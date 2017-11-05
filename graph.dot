@@ -1,0 +1,28 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_iam_instance_profile.default_ecs" [label = "aws_iam_instance_profile.default_ecs", shape = "box"]
+		"[root] aws_iam_role.default_ecs_role" [label = "aws_iam_role.default_ecs_role", shape = "box"]
+		"[root] aws_iam_role_policy.default_ecs_instance_role_policy" [label = "aws_iam_role_policy.default_ecs_instance_role_policy", shape = "box"]
+		"[root] aws_iam_role_policy.default_ecs_service_role_policy" [label = "aws_iam_role_policy.default_ecs_service_role_policy", shape = "box"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] aws_iam_instance_profile.default_ecs" -> "[root] aws_iam_role.default_ecs_role"
+		"[root] aws_iam_role.default_ecs_role" -> "[root] provider.aws"
+		"[root] aws_iam_role.default_ecs_role" -> "[root] var.environment"
+		"[root] aws_iam_role.default_ecs_role" -> "[root] var.name"
+		"[root] aws_iam_role.default_ecs_role" -> "[root] var.namespaced"
+		"[root] aws_iam_role_policy.default_ecs_instance_role_policy" -> "[root] aws_iam_role.default_ecs_role"
+		"[root] aws_iam_role_policy.default_ecs_service_role_policy" -> "[root] aws_iam_role.default_ecs_role"
+		"[root] output.profile" -> "[root] aws_iam_instance_profile.default_ecs"
+		"[root] output.role_arn" -> "[root] aws_iam_role.default_ecs_role"
+		"[root] output.role_id" -> "[root] aws_iam_role.default_ecs_role"
+		"[root] root" -> "[root] aws_iam_role_policy.default_ecs_instance_role_policy"
+		"[root] root" -> "[root] aws_iam_role_policy.default_ecs_service_role_policy"
+		"[root] root" -> "[root] output.profile"
+		"[root] root" -> "[root] output.role_arn"
+		"[root] root" -> "[root] output.role_id"
+		"[root] root" -> "[root] var.tags"
+	}
+}
+
